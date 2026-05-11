@@ -9,7 +9,11 @@ import setPayload from "./helpers/setPayload.js";
 import cors from "cors";
 const { PORT } = appConfig;
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ["https://animebae.vercel.app", "https://animebae.netlify.app"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+}));
 app.use(clientCache(1));
 app.get("/", (req, res) => {
     const routes = [
